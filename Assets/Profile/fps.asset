@@ -125,7 +125,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8e6292b2c06870d4495f009f912b9600, type: 3}
-  m_Name: outdoors
+  m_Name: fps
   m_EditorClassIdentifier: 
   settings:
   - {fileID: 1842230956846169328}
@@ -180,7 +180,7 @@ MonoBehaviour:
     value: 1
   intensity:
     overrideState: 1
-    value: 5
+    value: 7.28
   threshold:
     overrideState: 1
     value: 1
@@ -192,7 +192,7 @@ MonoBehaviour:
     value: 65472
   diffusion:
     overrideState: 1
-    value: 7
+    value: 4.75
   anamorphicRatio:
     overrideState: 1
     value: 0
