@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityStandardAssets.Characters.FirstPerson;
 
 namespace UnityStandardAssets.Characters.ThirdPerson
 {
@@ -15,7 +16,9 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 		[SerializeField] float m_MoveSpeedMultiplier = 1f;
 		[SerializeField] float m_AnimSpeedMultiplier = 1f;
 		[SerializeField] float m_GroundCheckDistance = 0.1f;
+		[SerializeField] private MouseLook m_MouseLook;
 
+		public Camera firstPersonCamera;
 		Rigidbody m_Rigidbody;
 		Animator m_Animator;
 		bool m_IsGrounded;
@@ -29,6 +32,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 		CapsuleCollider m_Capsule;
 		bool m_Crouching;
 
+		private Camera m_Camera;
 
 		void Start()
 		{
@@ -40,8 +44,34 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 
 			m_Rigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
 			m_OrigGroundCheckDistance = m_GroundCheckDistance;
+			m_Camera = Camera.main;
+			m_MouseLook.Init(transform, m_Camera.transform);
 		}
 
+		private void Update()
+		{
+			if (firstPersonCamera != null && firstPersonCamera.enabled)
+            {
+				RotateView();
+			}
+			
+		}
+
+		private void FixedUpdate()
+        {
+			if (firstPersonCamera != null && firstPersonCamera.enabled)
+			{
+				m_MouseLook.UpdateCursorLock();
+			}
+		}
+
+		private void RotateView()
+		{
+			if (firstPersonCamera != null && firstPersonCamera.enabled)
+			{
+				m_MouseLook.LookRotation(transform, m_Camera.transform);
+			}
+		}
 
 		public void Move(Vector3 move, bool crouch, bool jump)
 		{

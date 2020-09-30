@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
+using UnityStandardAssets.Characters.FirstPerson;
+using UnityStandardAssets.Characters.ThirdPerson;
 
 public class SwitchCamera : MonoBehaviour
 {
@@ -26,10 +28,10 @@ public class SwitchCamera : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.G))
         {
             isFps = !isFps;
-            fps.enabled = isFps;
+            fps.enabled = isFps;            
             tps.enabled = !isFps;
-            fpsvolume.isGlobal = !tps.enabled;
-            
+
+            fpsvolume.isGlobal = fps.enabled;
         }
 
     }
